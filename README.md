@@ -1,9 +1,9 @@
-# Project FitTrack
-PROJECT DESCRIPTION:
+# PROJECT FitTrack
+## DESCRIPTION:
 
-This project requires us to create a full-stack application that will showcase our knowledge on the following requirements below:
+This project is a full-stack fitness tracking application, allowing users to monitor their workouts and nutritional intake. Built using multiple front and back-end technologies, it offers a comprehensive solution for fitness enthusiasts to track their progress and optimize their routines. This application will showcase our skills based on the following requirements below:
 
-# REQUIREMENTS:
+## REQUIREMENTS:
 - Use Node.js and Express.js to create a RESTful API
 - Use Handlebars.js as the template engine
 - Use MySQL and the Sequelize ORM for the database
@@ -19,15 +19,15 @@ This project requires us to create a full-stack application that will showcase o
 - Meet good-quality coding standards (file structure, naming conventions, follows best practices for class/id naming conventions, indentation, quality comments, and so on)
 - Have a professional README (with unique name, description, technologies used, screenshot, and link to deployed application)
 
-# USER STORY:
+## USER STORY:
 - AS A fitness enthusiast
 - I WANT TO track my workouts and supplements intake
 - SO THAT I can monitor my progress and optimize my fitness routine for better results
 
-# LINKS:
+## LINKS:
 - Link to github repository for this project:
 - Link to deployed appluiation: 
 
-# RESOURCES:
+## RESOURCES:
 
 Screenshot of deployed application: ![Alt text]
