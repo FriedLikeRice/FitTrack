@@ -1,0 +1,20 @@
+{
+  "dependencies": {
+    "express": "^4.19.2",
+    "handlebars": "^4.7.8",
+    "jquery": "^3.7.1",
+    "mysql": "^2.18.1",
+    "nodemon": "^3.1.0",
+    "react": "^18.2.0"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "name": "fittrack",
+  "description": "PROJECT DESCRIPTION:",
+  "version": "1.0.0",
+  "main": "server.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
