@@ -1,7 +1,7 @@
 # PROJECT FitTrack
-## DESCRIPTION:
 
-This project is a full-stack fitness tracking application, allowing users to monitor their workouts and nutritional intake. Built using multiple front and back-end technologies, it offers a comprehensive solution for fitness enthusiasts to track their progress and optimize their routines. This application will showcase our skills based on the following requirements below:
+## DESCRIPTION:
+This project is a full-stack fitness tracking application, allowing users to monitor their workouts and nutritional intake. Built using multiple front and back-end technologies, it allows users to track their fitness progress and optimize their routines. This application will showcase our skills based on the following requirements below:
 
 ## REQUIREMENTS:
 - Use Node.js and Express.js to create a RESTful API
@@ -21,12 +21,12 @@ This project is a full-stack fitness tracking application, allowing users to mon
 
 ## USER STORY:
 - AS A fitness enthusiast
-- I WANT TO track my workouts and supplements intake
+- I WANT TO track my workouts and supplemental intake
 - SO THAT I can monitor my progress and optimize my fitness routine for better results
 
 ## LINKS:
 - Link to github repository for this project:
-- Link to deployed appluiation: 
+- Link to deployed application: 
 
 ## RESOURCES:
 
