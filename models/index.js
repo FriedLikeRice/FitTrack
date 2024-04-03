@@ -6,7 +6,7 @@ User.hasMany(Workout, {
   onDelete: 'CASCADE'
 });
 
-Project.belongsTo(User, {
+Workout.belongsTo(User, {
   foreignKey: 'user_id'
 });
 
