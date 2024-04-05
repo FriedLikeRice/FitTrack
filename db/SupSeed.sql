@@ -29,3 +29,4 @@ INSERT INTO supp (name, supplement) VALUES
     ('Probiotics', '1 capsule');
 
 DESC supp
+
