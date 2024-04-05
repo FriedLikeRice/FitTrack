@@ -25,7 +25,7 @@ router.delete('/:id', withAuth, async (req, res) => {
     });
 
     if (!supplementData) {
-      res.status(404).json({ message: 'No workout found with this ID!' });
+      res.status(404).json({ message: 'No supplement found with this ID!' });
       return;
     }
 
