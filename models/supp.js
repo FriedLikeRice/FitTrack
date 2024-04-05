@@ -1,21 +1,17 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-// Workout Model
-class Workout extends Model {}
+// Supplement Model
+class Supplement extends Model {}
 
-Workout.init(
+Supplement.init(
   {
-    workout_name: {
+    supplement_name: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    weight: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
-    reps: {
-      type: DataTypes.INTEGER,
+    serving_size: {
+      type: DataTypes.STRING,
       allowNull: false
     },
     user_id: {
@@ -32,8 +28,8 @@ Workout.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'workout'
+    modelName: 'supplement'
   }
 );
 
-module.exports = Workout;
+module.exports = Supplement;
