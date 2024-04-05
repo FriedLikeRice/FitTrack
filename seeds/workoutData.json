@@ -1,12 +1,12 @@
 [
     {
         "workout": "Push-Up",
-        "description": "Perform 3 sets of 10 push-ups with 6 reps each",
-        "intake": "Protein shake after workout"
+        "weight": "25",
+        "reps": "10"
     },
     {
-        "workout": "Squat",
-        "description": "Perform 4 sets of 12 squats with a barbell",
-        "intake": "Multivitamins before workout"
+        "workout": "Pull up",
+        "weight": "25",
+        "reps": "10"
     }
 ]

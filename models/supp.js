@@ -6,11 +6,15 @@ class Supplement extends Model {}
 
 Supplement.init(
   {
-    supplement_name: {
+    supplement: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    serving_size: {
+    description: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    intake: {
       type: DataTypes.STRING,
       allowNull: false
     },
