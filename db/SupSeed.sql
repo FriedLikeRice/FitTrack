@@ -28,4 +28,4 @@ INSERT INTO supp (name, supplement) VALUES
     ('Vitamin C', '1000mg'),
     ('Probiotics', '1 capsule');
 
-DESC table_name
+DESC supp
