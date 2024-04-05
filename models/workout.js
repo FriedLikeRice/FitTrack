@@ -6,7 +6,7 @@ class Workout extends Model {}
 
 Workout.init(
   {
-    workout_name: {
+    workout: {
       type: DataTypes.STRING,
       allowNull: false
     },
