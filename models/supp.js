@@ -1,19 +1,12 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-// Supplement Model class
+// Supplement Model
 class Supplement extends Model {}
 
-// Supplement model 
 Supplement.init(
   {
-    // go over this again
-    id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true
-    },
-    name: {
+    supplement_name: {
       type: DataTypes.STRING,
       allowNull: false
     },
@@ -25,7 +18,7 @@ Supplement.init(
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: 'User', 
+        model: 'User',
         key: 'id'
       }
     }
