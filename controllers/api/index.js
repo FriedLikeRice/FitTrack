@@ -1,6 +1,6 @@
 const router = require('express').Router();
 // Import the routes. This is how we make our routes modular.
-const userRoutes = require('../userRoutes');
+const userRoutes = require('./userRoutes');
 const workoutRoutes = require('./workoutRoutes');
 const supplementRoutes = require('./supplementRoutes');
 
