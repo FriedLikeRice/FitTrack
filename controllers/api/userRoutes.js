@@ -1,19 +1,22 @@
 const router = require('express').Router();
-const { User } = require('../../models'); // Check the path to your models file
+const { User } = require('../../models');
+const bcrypt = require('bcrypt');
+const saltRounds = 10; // Recommended salt rounds for bcrypt
 
-router.post('/register', async (req, res) => {
+// Signup (Register) route
+router.post('/signup', async (req, res) => {
     try {
+      const hashedPassword = await bcrypt.hash(req.body.password, saltRounds);
+      
       const userData = await User.create({
         username: req.body.username,
         email: req.body.email,
-        password: req.body.password,
+        password: hashedPassword,
       });
-  
-      // Optionally, you can hash the password before saving it to the database
   
       req.session.save(() => {
         req.session.loggedIn = true;
-        req.session.userId = userData.id; // Update to userId for consistency
+        req.session.userId = userData.id;
   
         res.status(200).json(userData);
       });
@@ -23,6 +26,7 @@ router.post('/register', async (req, res) => {
     }
 });
 
+// Login route
 router.post('/login', async (req, res) => {
   try {
     const userData = await User.findOne({ where: { email: req.body.email } });
@@ -31,7 +35,7 @@ router.post('/login', async (req, res) => {
       return res.status(400).json({ message: 'Incorrect email or password, please try again' });
     }
 
-    const validPassword = await userData.checkPassword(req.body.password);
+    const validPassword = await bcrypt.compare(req.body.password, userData.password);
 
     if (!validPassword) {
       return res.status(400).json({ message: 'Incorrect email or password, please try again' });
@@ -50,6 +54,7 @@ router.post('/login', async (req, res) => {
   }
 });
 
+// Logout route
 router.post('/logout', (req, res) => {
   if (req.session.loggedIn) {
     req.session.destroy(() => {
