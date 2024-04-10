@@ -2,6 +2,28 @@ const router = require('express').Router();
 const { User } = require('../../models');
 const bcrypt = require('bcrypt');
 
+// user route 
+router.get('/user', async (req, res) => {
+  if(req.session.loggedIn) {
+    try {
+      const userData = await User.findByPk(req.session.userId);
+      if (userData) {
+        // Assuming 'userProfile' is a view/template that expects 'userData' object
+        res.render('userProfile', { userData: userData.get({ plain: true }) });
+      } else {
+        // Handle case where user data is not found
+        res.status(404).send('User not found');
+      }
+    } catch (err) {
+      console.error(err);
+      res.status(500).send('Error retrieving user data');
+    }
+  } else {
+    // If not logged in
+    res.redirect('/login');
+  }
+});
+
 // Signup route
 router.post('/signup', async (req, res) => {
     try {
@@ -16,7 +38,8 @@ router.post('/signup', async (req, res) => {
       req.session.save(() => {
         req.session.loggedIn = true;
         req.session.userId = userData.id;
-  
+        
+        // might need to update line 43
         res.status(200).json(userData);
       });
     } catch (err) {
