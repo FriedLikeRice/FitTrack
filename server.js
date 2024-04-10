@@ -4,6 +4,7 @@ const session = require('express-session');
 const exphbs = require('express-handlebars');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const routes = require('./controllers');
+const userRoutes = require('./controllers/userRoutes');
 const sequelize = require('./config/connection');
 const helpers = require('./utils/helpers');
 const { Sequelize } = require('sequelize');
@@ -22,7 +23,6 @@ const sess = {
     db: sequelize,
   }),
 };
-
 app.use(session(sess));
 
 const hbs = exphbs.create({ helpers });
@@ -34,7 +34,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static('public'));
 app.use(routes);
+app.use('/', userRoutes);
 
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
