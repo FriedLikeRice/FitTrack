@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Workout, Supplement } = require('../models'); 
+const { Workout, Supplement, User } = require('../models');
 const withAuth = require('../middleware/authMiddleware'); 
 
 // Route for the homepage
@@ -42,17 +42,18 @@ router.get('/profile', withAuth, async (req, res) => {
     // Fetch user data based on session ID
     const userData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ['password'] },
-      // Include any associations needed for the profile page (e.g., projects)
-      include: [/* Include relevant associations */],
+      include: [
+        { model: Workout },
+        { model: Supplement },
+      ],
     });
     if (!userData) {
-      res.status(404).json({ message: 'User not found' });
-      return;
+      return res.status(404).json({ message: 'User not found' });
     }
     const user = userData.get({ plain: true });
     res.render('profile', { user, logged_in: true });
   } catch (err) {
-    res.status(500).json(err);
+    res.status(500).json({ message: 'An error occurred while fetching user data', error: err });
   }
 });
 
