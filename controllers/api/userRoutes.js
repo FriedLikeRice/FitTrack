@@ -27,7 +27,7 @@ router.get('/user', async (req, res) => {
 // Signup route
 router.post('/signup', async (req, res) => {
     try {
-      const hashedPassword = await bcrypt.hash(req.body.password, saltRounds);
+      const hashedPassword = await bcrypt.hash(req.body.password);
       
       const userData = await User.create({
         username: req.body.username,
