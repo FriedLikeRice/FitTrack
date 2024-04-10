@@ -4,9 +4,10 @@ const loginFormHandler = async (event) => {
   const email = document.querySelector('#email-login').value.trim();
   const password = document.querySelector('#password-login').value.trim();
 
+  // removed signup handler to be used in signup.js file
   if (email && password) {
     try {
-      const response = await fetch('/api/user/login', {
+      const response = await fetch('/login', {
         method: 'POST',
         body: JSON.stringify({ email, password }),
         headers: { 'Content-Type': 'application/json' },
@@ -28,37 +29,6 @@ const loginFormHandler = async (event) => {
   }
 };
 
-const signupFormHandler = async (event) => {
-  event.preventDefault();
-
-  const username = document.querySelector('#username-signup').value.trim();
-  const email = document.querySelector('#email-signup').value.trim();
-  const password = document.querySelector('#password-signup').value.trim();
-
-  if (username && email && password) {
-    try {
-      const response = await fetch('/api/user/signup', {
-        method: 'POST',
-        body: JSON.stringify({ username, email, password }),
-        headers: { 'Content-Type': 'application/json' },
-      });
-
-      if (response.ok) {
-        document.location.replace('/profile'); // Redirect to profile page on successful signup
-      } else {
-        alert('Failed to sign up.');
-      }
-    } catch (error) {
-      console.error('Error signing up:', error);
-      alert('An error occurred while signing up. Please try again later.');
-    }
-  }
-};
-
 document
   .querySelector('.login-form')
   .addEventListener('submit', loginFormHandler);
-
-document
-  .querySelector('.signup-form')
-  .addEventListener('submit', signupFormHandler);
