@@ -1,11 +1,12 @@
 const withAuth = (req, res, next) => {
-    // If the user is not logged in, send a 401 Unauthorized response
-    if (!req.session.logged_in) {
-      res.status(401).json({ message: 'Unauthorized' });
-    } else {
+  // Check if the user is logged in
+  if (!req.session.userId) {
+      // If not logged in, redirect to the login page
+      res.redirect('/login');
+  } else {
+      // If logged in, allow the request to proceed
       next();
-    }
-  };
-  
-  module.exports = withAuth;
-  
+  }
+};
+
+module.exports = withAuth;
