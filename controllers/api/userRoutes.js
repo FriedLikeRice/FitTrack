@@ -1,9 +1,8 @@
 const router = require('express').Router();
 const { User } = require('../../models');
 const bcrypt = require('bcrypt');
-const saltRounds = 10; // Recommended salt rounds for bcrypt
 
-// Signup (Register) route
+// Signup route
 router.post('/signup', async (req, res) => {
     try {
       const hashedPassword = await bcrypt.hash(req.body.password, saltRounds);
