@@ -15,11 +15,12 @@ const PORT = process.env.PORT || 3001;
 const sess = {
   secret: 'SuperSecretSecret', // Change to a long, randomly generated string
   cookie: { 
+    httpOnly: true,
     maxAge: 3600000, // Example: set the session cookie to expire after 1 hour (adjust as needed)
   },
   resave: false,
   saveUninitialized: true,
-  store: new SequelizeStore({
+  store: new SequelizeStore({  
     db: sequelize,
   }),
 };
