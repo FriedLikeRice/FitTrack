@@ -1,6 +1,10 @@
 const router = require('express').Router();
 const { User } = require('../../models');
 const bcrypt = require('bcrypt');
+const saltRounds = 20; // can change value
+
+// Importing withAuth middleware 
+const withAuth = require('../../middleware/authMiddleware');
 
 // Signup route
 router.post('/signup', async (req, res) => {
@@ -20,7 +24,7 @@ router.post('/signup', async (req, res) => {
         res.status(200).json(userData);
       });
     } catch (err) {
-      console.error(err);
+      console.error('Error in bcrypt hashing:', err);
       res.status(500).json(err.message || 'Internal server error');
     }
 });
@@ -48,7 +52,7 @@ router.post('/login', async (req, res) => {
     });
 
   } catch (err) {
-    console.error(err);
+    console.error('Error in bcrypt hashing:', err);
     res.status(500).json(err.message || 'Internal server error');
   }
 });
