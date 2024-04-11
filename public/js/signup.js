@@ -10,9 +10,9 @@ const signupFormHandler = async (event) => {
     if (name && email && password) {
       try {
         // Send a POST request to the API endpoint
-        const response = await fetch('/api/users/signup', {
+        const response = await fetch('/signup', {
           method: 'POST',
-          body: JSON.stringify({ name, email, password }),
+          body: JSON.stringify({ username: name, email, password }), // Adjusted key to 'username'
           headers: { 'Content-Type': 'application/json' },
         });
   
@@ -28,9 +28,8 @@ const signupFormHandler = async (event) => {
     }
   };
   
-  // Add event listener to signup form
   document.getElementById('signup-form').addEventListener('submit', function(event) {
     event.preventDefault(); 
     signupFormHandler(); // Call signup form handler function
-  });
+ });
   
