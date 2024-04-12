@@ -1,33 +1,15 @@
 const router = require('express').Router();
 const { User } = require('../../models');
 const bcrypt = require('bcrypt');
+const saltRounds = 20; // can change value
 
-// user route 
-router.get('/user', async (req, res) => {
-  if(req.session.loggedIn) {
-    try {
-      const userData = await User.findByPk(req.session.userId);
-      if (userData) {
-        // Assuming 'userProfile' is a view/template that expects 'userData' object
-        res.render('userProfile', { userData: userData.get({ plain: true }) });
-      } else {
-        // Handle case where user data is not found
-        res.status(404).send('User not found');
-      }
-    } catch (err) {
-      console.error(err);
-      res.status(500).send('Error retrieving user data');
-    }
-  } else {
-    // If not logged in
-    res.redirect('/login');
-  }
-});
+// Importing withAuth middleware 
+const withAuth = require('../../middleware/authMiddleware');
 
 // Signup route
 router.post('/signup', async (req, res) => {
     try {
-      const hashedPassword = await bcrypt.hash(req.body.password);
+      const hashedPassword = await bcrypt.hash(req.body.password, saltRounds);
       
       const userData = await User.create({
         username: req.body.username,
@@ -38,12 +20,11 @@ router.post('/signup', async (req, res) => {
       req.session.save(() => {
         req.session.loggedIn = true;
         req.session.userId = userData.id;
-        
-        // might need to update line 43
+  
         res.status(200).json(userData);
       });
     } catch (err) {
-      console.error(err);
+      console.error('Error in user signup', err);
       res.status(500).json(err.message || 'Internal server error');
     }
 });
@@ -71,7 +52,7 @@ router.post('/login', async (req, res) => {
     });
 
   } catch (err) {
-    console.error(err);
+    console.error('Error in bcrypt hashing:', err);
     res.status(500).json(err.message || 'Internal server error');
   }
 });

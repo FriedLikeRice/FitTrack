@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FitTrack</title>
-  <!-- Include your CSS file here -->
-  <link rel="stylesheet" type="text/css" href="../public/css/style.css">
+  <!-- CSS file with correct pathway -->
+  <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
+
 <body>
   <div class="row justify-space-between-md">
     <div class="login-card">
@@ -14,11 +16,11 @@
       <form id="login-form" class="form login-form">
         <div class="form-group">
           <label for="email-login">Email:</label>
-          <input class="form-input" type="text" id="email-login" />
+          <input class="form-input" type="email" id="email-login" name="email" />
         </div>
         <div class="form-group">
           <label for="password-login">Password:</label>
-          <input class="form-input" type="password" id="password-login" />
+          <input class="form-input" type="password" id="password-login" name="password" />
         </div>
         <div class="form-group">
           <button class="btn btn-primary" type="submit" id="login-btn">login</button>
@@ -30,15 +32,15 @@
       <form id="signup-form" class="form signup-form">
         <div class="form-group">
           <label for="username-signup">Username:</label>
-          <input class="form-input" type="text" id="username-signup" />
+          <input class="form-input" type="text" id="username-signup" name="username" />
         </div>
         <div class="form-group">
           <label for="email-signup">Email:</label>
-          <input class="form-input" type="text" id="email-signup" />
+          <input class="form-input" type="email" id="email-signup" name="email" />
         </div>
         <div class="form-group">
           <label for="password-signup">Password:</label>
-          <input class="form-input" type="password" id="password-signup" />
+          <input class="form-input" type="password" id="password-signup" name="password" />
         </div>
         <div class="form-group">
           <button class="btn btn-primary" type="submit" id="signup-btn">signup</button>
@@ -47,8 +49,9 @@
     </div>
   </div>
 
-  <!-- Include your JavaScript files here -->
-  <script src="../public/js/login.js"></script>
-  <script src="../public/js/signup.js"></script>
+  <!-- JavaScript files with correct pathways-->
+  <script src="/js/login.js"></script>
+  <script src="/js/signup.js"></script>
 </body>
+
 </html>

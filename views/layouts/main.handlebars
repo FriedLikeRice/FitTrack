@@ -5,14 +5,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FitTrack</title>
-  <script src="../../public/js/login.js"></script>
-  <script src="../../public/js/logout.js"></script>
-  <script src="../../public/js/signup.js"></script>
+  <script src="{{{ '/js/login.js' }}}"></script>
+  <script src="{{{ '/js/logout.js' }}}"></script>
+  <script src="{{{ '/js/signup.js' }}}"></script>
   <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 
 <body>
-  <header>
+  <header> 
     <h1>FitTrack</h1>
   </header>
   <nav>
@@ -29,7 +29,7 @@
     </div>
   </main>
   {{#if loggedIn}}
-  <script src="/js/logout.js"></script>
+  <script src="{{{ '/js/logout.js' }}}"></script>
   {{/if}}
 </body>
 

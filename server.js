@@ -4,7 +4,7 @@ const session = require('express-session');
 const exphbs = require('express-handlebars');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const routes = require('./controllers');
-const userRoutes = require('./controllers/userRoutes');
+const userRoutes = require('./controllers/api/userRoutes');
 const sequelize = require('./config/connection');
 const helpers = require('./utils/helpers');
 const { Sequelize } = require('sequelize');
@@ -35,10 +35,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static('public'));
+
 app.use(routes);
-app.use('/api/users', userRoutes);
+app.use('/api/user', userRoutes);
 
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
 });
+
+sequelize.authenticate()
+  .then(() => console.log('Database connected.'))
+  .catch(err => console.error('Unable to connect to the database:', err));
