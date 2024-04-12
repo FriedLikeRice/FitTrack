@@ -4,11 +4,11 @@ const session = require('express-session');
 const exphbs = require('express-handlebars');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const routes = require('./controllers');
-const userRoutes = require('./controllers/api/userRoutes');
+const userRoutes = require('./controllers/userRoutes');
 const sequelize = require('./config/connection');
 const helpers = require('./utils/helpers');
 const { Sequelize } = require('sequelize');
-
+const User = require('./models/user')
 const app = express();
 const PORT = process.env.PORT || 3001;
 
@@ -23,6 +23,16 @@ const sess = {
     db: sequelize,
   }),
 };
+
+// Sync models with database
+sequelize.sync({ force: false }) // Set force to true to drop tables on every sync
+  .then(() => {
+    console.log('Database synced successfully');
+  })
+  .catch((error) => {
+    console.error('Error syncing database:', error);
+  });
+
 app.use(session(sess));
 
 const hbs = exphbs.create({ helpers });
@@ -39,6 +49,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(routes);
 app.use('/', userRoutes);
 
-sequelize.sync({ force: false }).then(() => {
+sequelize.sync({ force: true }).then(() => {
   app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
 });

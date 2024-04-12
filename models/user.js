@@ -1,6 +1,5 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
-// Added bcrypt import
 const bcrypt = require('bcrypt'); 
 
 class User extends Model {
@@ -18,7 +17,7 @@ User.init(
       primaryKey: true,
       autoIncrement: true
     },
-    name: {
+    username: {
       type: DataTypes.STRING,
       allowNull: false
     },
@@ -34,12 +33,15 @@ User.init(
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        len: [8, Infinity], // Change password length validation
+        len: {
+          args: [8, Infinity],
+          msg: 'Password must be at least 8 characters long'
+        }
       },
     }
   },
   {
-    // for new users to be created/added onto db / or update their info onto db
+    // Hooks for hashing password before creating or updating user
     hooks: {
       beforeCreate: async (newUserData) => {
         newUserData.password = await bcrypt.hash(newUserData.password, 10);

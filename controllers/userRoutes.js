@@ -1,10 +1,10 @@
 const router = require('express').Router();
-const { User } = require('../../models');
+const { User } = require('../models');
 const bcrypt = require('bcrypt');
 const saltRounds = 10; // can change value
 
 // Importing withAuth middleware 
-const withAuth = require('../../middleware/authMiddleware');
+const withAuth = require('../middleware/authMiddleware');
 
 // Signup route
 router.post('/signup', async (req, res) => {
