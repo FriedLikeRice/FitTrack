@@ -30,4 +30,4 @@ This project is a full-stack fitness tracking application, allowing users to mon
 
 ## RESOURCES:
 
-Screenshot of deployed application: ![Alt text]
+Screenshot of deployed application: ![Alt text](./public/images/project.png)
