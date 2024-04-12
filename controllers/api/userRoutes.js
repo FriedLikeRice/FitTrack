@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { User } = require('../../models');
 const bcrypt = require('bcrypt');
-const saltRounds = 20; // can change value
+const saltRounds = 10; // can change value
 
 // Importing withAuth middleware 
 const withAuth = require('../../middleware/authMiddleware');
