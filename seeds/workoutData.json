@@ -1,12 +1,14 @@
 [
     {
         "workout": "Push-Up",
-        "weight": "25",
-        "reps": "10"
+        "weight": 25,
+        "reps": 10,
+        "user_id": 1
     },
     {
         "workout": "Pull up",
-        "weight": "25",
-        "reps": "10"
+        "weight": 25,
+        "reps": 10,
+        "user_id": 1
     }
 ]

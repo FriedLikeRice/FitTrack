@@ -15,12 +15,11 @@ const PORT = process.env.PORT || 3001;
 const sess = {
   secret: 'SuperSecretSecret', // Change to a long, randomly generated string
   cookie: { 
-    httpOnly: true,
     maxAge: 3600000, // Example: set the session cookie to expire after 1 hour (adjust as needed)
   },
   resave: false,
   saveUninitialized: true,
-  store: new SequelizeStore({  
+  store: new SequelizeStore({
     db: sequelize,
   }),
 };
@@ -48,7 +47,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(routes);
-app.use('/api/users', userRoutes);
+app.use('/', userRoutes);
 
 sequelize.sync({ force: true }).then(() => {
   app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));

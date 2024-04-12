@@ -13,10 +13,8 @@ const loginFormHandler = async (event) => {
       });
 
       if (response.ok) {
-        // Redirect to the homepage upon successful login
-        document.location.replace('/profile');
+        document.location.replace('/');
       } else {
-        // Display an error message if login fails
         alert('Failed to log in. Please check your email and password.');
       }
     } catch (error) {
