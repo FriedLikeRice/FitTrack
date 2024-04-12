@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { User } = require('../../models'); // Check the path to your models file
 
-router.post('/register', async (req, res) => {
+router.post('/signup', async (req, res) => {
     try {
       const userData = await User.create({
         username: req.body.username,

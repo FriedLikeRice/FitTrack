@@ -1,19 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FitTrack</title>
-  <script src="../../public/js/login.js"></script>
-  <script src="../../public/js/logout.js"></script>
-  <script src="../../public/js/signup.js"></script>
+  <!-- Link to CSS file -->
   <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
-
 <body>
   <header>
-    <h1>FitTrack</h1>
+    <h1>{{h1}}</h1>
   </header>
   <nav>
     <a href="/">Home</a>
@@ -25,15 +21,23 @@
   </nav>
   <main>
     <aside>
-      <h2>Welcome to FitTrack</h2>
+      <h2>{{h2}}</h2>
     </aside>
     <div class="hero">
-      {{{body}}}
+      <!-- Signup Form -->
+      <form id="signup-form">
+        <input type="text" id="username-signup" placeholder="Username" required>
+        <input type="email" id="email-signup" placeholder="Email" required>
+        <input type="password" id="password-signup" placeholder="Password" required>
+        <button type="submit">Sign Up</button>
+      </form>
     </div>
   </main>
+  <!-- Link to JavaScript file -->
+  <script src="/js/signup.js"></script>
+  <!-- Conditionally include logout.js if logged in -->
   {{#if loggedIn}}
   <script src="/js/logout.js"></script>
   {{/if}}
 </body>
-
 </html>

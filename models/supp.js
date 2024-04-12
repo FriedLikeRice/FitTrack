@@ -22,7 +22,7 @@ Supplement.init(
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: 'User',
+        model: 'user', // Change 'User' to 'user'
         key: 'id'
       }
     }
@@ -32,7 +32,7 @@ Supplement.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'supplement'
+    modelName: 'Supplement' // Change to 'Supplement' for consistency
   }
 );
 
