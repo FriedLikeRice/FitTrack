@@ -25,7 +25,7 @@ This project is a full-stack fitness tracking application, allowing users to mon
 - SO THAT I can monitor my progress and optimize my fitness routine for better results
 
 ## LINKS:
-- Link to github repository for this project:
+- Link to github repository for this project: https://github.com/FriedLikeRice/FitTrack
 - Link to deployed application: 
 
 ## RESOURCES:
