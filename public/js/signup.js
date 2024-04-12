@@ -15,10 +15,9 @@ if (!window.signupFormHandler) {
     if (username && email && password) {
       try {
         // Send a POST request to the API endpoint
-
-        const response = await fetch('/signup', {
+        const response = await fetch('/api/user/signup', {
           method: 'POST',
-          body: JSON.stringify({ username: name, email, password }), // Adjusted key to 'username'
+          body: JSON.stringify({ username, email, password }),
           headers: { 'Content-Type': 'application/json' },
         });
 
@@ -40,9 +39,6 @@ if (!window.signupFormHandler) {
     }
   };
 
-  
-  document.getElementById('signup-form').addEventListener('submit', function(event) {
-    event.preventDefault(); 
-    signupFormHandler(); // Call signup form handler function
- });
-  
+  // Add event listener to signup form
+  document.getElementById('signup-form').addEventListener('submit', signupFormHandler);
+}
