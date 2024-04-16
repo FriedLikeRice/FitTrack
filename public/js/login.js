@@ -1,62 +1,33 @@
 const loginFormHandler = async (event) => {
   event.preventDefault();
 
+  // Collect values from the login form
   const email = document.querySelector('#email-login').value.trim();
   const password = document.querySelector('#password-login').value.trim();
 
-  if (email && password) {
-    try {
-      const response = await fetch('/api/login', {
-        method: 'POST',
-        body: JSON.stringify({ email, password }),
-        headers: { 'Content-Type': 'application/json' },
-      });
-
-      if (response.ok) {
-        document.location.replace('/');
-      } else {
-        alert('Failed to log in. Please check your email and password.');
-      }
-    } catch (error) {
-      console.error('Login error:', error);
-      alert('An error occurred while logging in. Please try again later.');
-    }
-  } else {
+  // checks on both email and password
+  if (!email || !password) {
     alert('Please provide both email and password.');
+    return;
   }
-};
 
-const signupFormHandler = async (event) => {
-  event.preventDefault();
+  try {
+    const response = await fetch('/api/users/login', {
+      method: 'POST',
+      body: JSON.stringify({ email, password }),
+      headers: { 'Content-Type': 'application/json' },
+    });
 
-  const username = document.querySelector('#username-signup').value.trim();
-  const email = document.querySelector('#email-signup').value.trim();
-  const password = document.querySelector('#password-signup').value.trim();
-
-  if (username && email && password) {
-    try {
-      const response = await fetch('/api/signup', {
-        method: 'POST',
-        body: JSON.stringify({ username, email, password }),
-        headers: { 'Content-Type': 'application/json' },
-      });
-
-      if (response.ok) {
-        document.location.replace('/profile'); // Redirect to profile page on successful signup
-      } else {
-        alert('Failed to sign up.');
-      }
-    } catch (error) {
-      console.error('Error signing up:', error);
-      alert('An error occurred while signing up. Please try again later.');
+    if (response.ok) {
+      // If successful, redirect the browser to the profile page
+      document.location.replace('/profile');
+    } else {
+      alert('Failed to log in. Please check your email and password.');
     }
+  } catch (error) {
+    console.error('Login error:', error);
+    alert('An error occurred while logging in. Please try again later.');
   }
 };
 
-document
-  .querySelector('.login-form')
-  .addEventListener('submit', loginFormHandler);
-
-document
-  .querySelector('.signup-form')
-  .addEventListener('submit', signupFormHandler);
+document.querySelector('.login-form').addEventListener('submit', loginFormHandler);

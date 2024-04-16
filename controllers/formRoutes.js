@@ -1,12 +1,10 @@
-// links to formHandler.js and app.handlebars
 const express = require('express');
 const router = express.Router();
 const { User, Workout, Supplement } = require('../models');
-const bcrypt = require('bcrypt');
 
 // Middleware to ensure user is authenticated
 function ensureAuthenticated(req, res, next) {
-    if (!req.session.userId) {
+    if (!req.session.user_id) {
         return res.status(403).json({ message: 'User not authenticated' });
     }
     next();
@@ -16,7 +14,7 @@ router.use(ensureAuthenticated);
 
 router.post('/submit', async (req, res) => {
     const { workout, reps, weight, supplement, description, intake } = req.body;
-    const userId = req.session.userId; // Assuming this is set at login
+    const userId = req.session.user_id; // Assuming this is set at login
 
     if (!workout || reps === undefined || !weight) {
         return res.status(400).json({ message: 'Missing required workout fields' });

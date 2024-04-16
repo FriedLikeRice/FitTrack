@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const { Workout, Supplement, User } = require('../models');
-const withAuth = require('../middleware/authMiddleware'); 
+// using auth.js instead of authMiddleware.js
+const withAuth = require('../utils/auth');
 
 // Route for the homepage
 router.get('/', async (req, res) => {
@@ -21,7 +22,6 @@ router.get('/', async (req, res) => {
 });
 
 // Route for viewing individual workout or supplement 
-// edit this if needed
 router.get('/workout/:id', async (req, res) => {
   try {
     const workout = await Workout.findByPk(req.params.id);
@@ -35,8 +35,7 @@ router.get('/workout/:id', async (req, res) => {
   }
 });
 
-// Route for user profile page (requires authentication)
-// uses middleware folder
+// Route for user profile page (requires authentication) using utils folder
 router.get('/profile', withAuth, async (req, res) => {
   try {
     // Fetch user data based on session ID
@@ -48,10 +47,12 @@ router.get('/profile', withAuth, async (req, res) => {
       ],
     });
     if (!userData) {
+      // Return a JSON response if the user is not found
       return res.status(404).json({ message: 'User not found' });
     }
+
     const user = userData.get({ plain: true });
-    res.render('profile', { user, logged_in: true });
+    res.render('profile', { user, loggedin: true });
   } catch (err) {
     res.status(500).json({ message: 'An error occurred while fetching user data', error: err });
   }
@@ -59,6 +60,7 @@ router.get('/profile', withAuth, async (req, res) => {
 
 // Route for rendering login page
 router.get('/login', (req, res) => {
+  // If the user is already logged in, redirect the request to another route  
   if (req.session.loggedin) {
     res.redirect('/profile');
     return;

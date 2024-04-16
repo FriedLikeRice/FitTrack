@@ -2,7 +2,8 @@ const router = require('express').Router();
 const { Supplement } = require('../../models');
 const withAuth = require('../../utils/auth');
 
-router.post('/', withAuth, async (req, res) => {
+// Route for creating a new supplement
+router.post('/supplements', withAuth, async (req, res) => {
   try {
     const newSupplement = await Supplement.create({
       ...req.body,
@@ -15,7 +16,8 @@ router.post('/', withAuth, async (req, res) => {
   }
 });
 
-router.delete('/:id', withAuth, async (req, res) => {
+// Route for deleting a supplement
+router.delete('/supplements/:id', withAuth, async (req, res) => {
   try {
     const supplementData = await Supplement.destroy({
       where: {

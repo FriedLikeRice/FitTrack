@@ -1,48 +1,58 @@
 <body>
     <header>
         <h1>User Profile</h1>
-        <nav>
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Workouts</a></li>
-                <li><a href="#">Nutrition</a></li>
-                <li><a href="#">Progress</a></li>
-                <li><a href="#">About</a></li>
-            </ul>
-        </nav>
     </header>
+
     <main class="container">
-        <section id="account-info">
-            <h2>Account Information</h2>
-            <ul>
-                <li><strong>Username:</strong> JohnDoe</li>
-                <li><strong>Email:</strong> johndoe@example.com</li>
-                <li><strong>Membership:</strong> Premium</li>
-            </ul>
-        </section>
-        <section id="past-workouts">
-            <h2>Past Workouts</h2>
-            <ul>
-                <li>
-                    <h3> {{userinput}} </h3>
-                    <strong>Date:</strong> January 1, 2024
-                    <ul>
-                        <li><strong>Exercise:</strong> Push-Ups</li>
-                        <li><strong>Reps:</strong> 20</li>
-                        <li><strong>Sets:</strong> 3</li>
-                    </ul>
-                </li>
-            </ul>
-        </section>
-        <section id="user-info">
-            <h2>User Information</h2>
-            <ul>
-                <li><strong>Name:</strong> John Doe</li>
-                <li><strong>Age:</strong> 30</li>
-                <li><strong>Gender:</strong> Male</li>
-                <li><strong>Height:</strong> 6'2"</li>
-                <li><strong>Weight:</strong> 180 lbs</li>
-            </ul>
-        </section>
+        <div class="row">
+            <div class="col-auto">
+                <h2>Welcome, {{user.username}}!</h2>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <h3>Create a New Workout</h3>
+                <form class="form new-workout-form">
+                    <div class="form-group">
+                        <label for="workout-name">Workout Name:</label>
+                        <input class="form-input" type="text" id="workout-name" name="workout-name" />
+                    </div>
+                    <div class="form-group">
+                        <label for="workout-reps">Reps:</label>
+                        <input class="form-input" type="number" id="workout-reps" name="workout-reps" />
+                    </div>
+                    <div class="form-group">
+                        <label for="workout-weight">Weight (lbs):</label>
+                        <input class="form-input" type="number" id="workout-weight" name="workout-weight" />
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Create</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <h3>Past Workouts</h3>
+                <ul>
+                    {{#each user.workouts as |workout|}}
+                    <li>
+                        <h4>{{workout.name}}</h4>
+                        <ul>
+                            <li><strong>Reps:</strong> {{workout.reps}}</li>
+                            <li><strong>Weight:</strong> {{workout.weight}}</li>
+                        </ul>
+                        <button class="btn btn-sm btn-primary edit-workout" data-id="{{workout.id}}">Edit</button>
+                        <button class="btn btn-sm btn-danger delete-workout" data-id="{{workout.id}}">Delete</button>
+                    </li>
+                    {{/each}}
+                </ul>
+            </div>
+        </div>
+
     </main>
+
+    <script src="./js/profile.js"></script>
 </body>
