@@ -14,7 +14,7 @@ Supplement.init(
       type: DataTypes.STRING,
       allowNull: false
     },
-    intake: {
+    dose: {
       type: DataTypes.STRING,
       allowNull: false
     },

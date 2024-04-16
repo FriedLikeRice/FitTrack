@@ -5,9 +5,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FitTrack</title>
+  <!-- linking the js files onto here -->
   <script src="{{{ '/js/login.js' }}}"></script>
+  <script src="{{{ '/js/profile.js' }}}"></script>
   <script src="{{{ '/js/logout.js' }}}"></script>
   <script src="{{{ '/js/signup.js' }}}"></script>
+
   <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 
@@ -17,17 +20,21 @@
   </header>
   <nav>
     <a href="/">Home</a>
-    {{#if loggedIn}}
-    <button id="logout" class="btn-no-style">Logout</button>
-    {{else}}
-    <a href="/login">Login</a>
-    {{/if}}
+    <!-- Conditionally render login or logout links -->
+    {{#if logged_in}}
+        <a href="/profile">profile</a> |
+        <button class="no-button" id="logout">Logout</button>
+        {{else}}
+        <a href="/login">Login</a>
+        {{/if}}
   </nav>
   <main>
     <div class="hero">
       {{{body}}}
     </div>
   </main>
+
+  <!-- Render script for logged in users only --> 
   {{#if loggedIn}}
   <script src="{{{ '/js/logout.js' }}}"></script>
   {{/if}}

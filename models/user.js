@@ -1,8 +1,7 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
-// Added bcrypt import
+// Added bcrypt import to this file
 const bcrypt = require('bcrypt'); 
-
 class User extends Model {
     // checks if input Pw matches stored/created Pw
     checkPassword(loginPw) {
@@ -29,7 +28,7 @@ User.init(
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        len: [8, Infinity], // Change password length validation
+        len: [6, 20], 
       },
     }
   },

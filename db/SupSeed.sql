@@ -1,13 +1,13 @@
 -- Create table for supplements
 CREATE TABLE supp (
     id SERIAL PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
-    supplement VARCHAR(50) NOT NULL
+    supplement VARCHAR(50) NOT NULL,
+    dose VARCHAR(50) NOT NULL
 );
 
 -- Inserting the top 20 workout supplements and their serving sizes
-INSERT INTO supp (name, supplement) VALUES 
-    ('Whey Protein', '1 scoop (30g)'),
+INSERT INTO supp (supplement, dose) VALUES 
+     ('Whey Protein', '1 scoop (30g)'),
     ('Creatine Monohydrate', '5g'),
     ('BCAAs (Branched-Chain Amino Acids)', '1 scoop (10g)'),
     ('Pre-Workout', '1 scoop (15g)'),
@@ -28,5 +28,4 @@ INSERT INTO supp (name, supplement) VALUES
     ('Vitamin C', '1000mg'),
     ('Probiotics', '1 capsule');
 
-DESC supp
-
+DESC supp;

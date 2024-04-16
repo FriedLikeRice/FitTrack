@@ -18,6 +18,13 @@ body {
     box-sizing: border-box; /* Include padding in total width */
 }
 
+/* styling sections in container */
+.container section {
+    border: 2px solid 542574; 
+    padding: 20px; 
+    margin-bottom: 20px; /* to separate sections */
+}
+
 /* Header styles */
 header {
     background-color: #542574; /* Royal purple */
@@ -34,16 +41,25 @@ header h1 {
 nav ul {
     list-style-type: none;
     padding: 0;
+    background-color: rgb(144, 75, 144); /* Yellow background */
 }
 
 nav ul li {
     display: inline;
     margin-right: 10px;
+    padding: 10px;
 }
 
 nav ul li a {
     color: #fff; /* White text */
     text-decoration: none;
+    background-color: rgb(144, 75, 144);; /* Yellow background */
+    padding: 10px; /* Add padding for better clickability */
+    border-radius: 4px; /* Add rounded corners */
+}
+
+nav ul li a:hover {
+    background-color: #FFB400; /* Orange gold on hover */
 }
 
 /* Hero section styles */
@@ -56,6 +72,7 @@ nav ul li a {
 
 .hero h2 {
     margin-bottom: 20px;
+    margin-top: 20px;
 }
 
 .hero p {
