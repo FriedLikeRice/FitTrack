@@ -25,9 +25,9 @@ This project is a full-stack fitness tracking application, allowing users to mon
 - SO THAT I can monitor my progress and optimize my fitness routine for better results
 
 ## LINKS:
-- Link to github repository for this project:
+- Link to github repository for this project: https://github.com/FriedLikeRice/FitTrack/tree/temp6
 - Link to deployed application: 
 
-## RESOURCES:
-
-Screenshot of deployed application: ![Alt text]
+## CHALLENGES:
+- allowing users to create a new workout
+- allowing users to logout with logout button and be redirected to login/homepage
