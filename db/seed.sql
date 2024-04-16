@@ -1,12 +1,28 @@
--- Create table for exercises
-CREATE TABLE exercises (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
-    muscle_group VARCHAR(100) NOT NULL
-);
+-- Seed supplements table
+INSERT INTO supplements (name, dosage) VALUES 
+    ('Whey Protein', '1 scoop (30g)'),
+    ('Creatine Monohydrate', '5g'),
+    ('BCAAs (Branched-Chain Amino Acids)', '1 scoop (10g)'),
+    ('Pre-Workout', '1 scoop (15g)'),
+    ('Glutamine', '5g'),
+    ('Casein Protein', '1 scoop (30g)'),
+    ('Fish Oil', '1 capsule (1000mg)'),
+    ('Multivitamin', '1 tablet'),
+    ('Beta-Alanine', '2g'),
+    ('Caffeine', '200mg'),
+    ('L-Glutamine', '5g'),
+    ('Vitamin D3', '5000 IU'),
+    ('ZMA (Zinc Magnesium Aspartate)', '3 capsules'),
+    ('HMB (Hydroxy Methylbutyrate)', '3g'),
+    ('L-Carnitine', '500mg'),
+    ('Omega-3 Fatty Acids', '1 capsule (1000mg)'),
+    ('Nitric Oxide Boosters', '1 scoop (10g)'),
+    ('Taurine', '1 scoop (5g)'),
+    ('Vitamin C', '1000mg'),
+    ('Probiotics', '1 capsule');
 
--- Inserting the top 100 most popular gym exercises with their muscle groups
-INSERT INTO exercises (name, muscle_group) VALUES 
+-- Seed workoutinfo table
+INSERT INTO workoutinfo (exercise, muscle_group) VALUES 
     ('Push-Up', 'Chest'),
     ('Pull-Up', 'Back'),
     ('Squat', 'Legs'),
@@ -91,5 +107,12 @@ INSERT INTO exercises (name, muscle_group) VALUES
     ('Dumbbell Lunges', 'Legs'),
     ('Dumbbell Step-Up', 'Legs');
 
--- Describe the 'exercises' table
-DESC exercises;
+-- Seed users table
+INSERT INTO users (username, email, password) VALUES
+('admin', 'admin@email.com', 'admin'),
+('root', 'root@email.com', 'root');
+
+SHOW TABLES;
+SELECT * FROM supplements;
+SELECT * FROM workoutinfo;
+SELECT * FROM users;
