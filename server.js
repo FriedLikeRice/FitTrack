@@ -2,53 +2,53 @@ const path = require('path');
 const express = require('express');
 const session = require('express-session');
 const exphbs = require('express-handlebars');
-const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const routes = require('./controllers');
-const userRoutes = require('./controllers/userRoutes');
-const sequelize = require('./config/connection');
 const helpers = require('./utils/helpers');
-const { Sequelize } = require('sequelize');
-const User = require('./models/user')
+
+
+
+// TODO: Add a comment describing the functionality of this expression
+//imports the sequleize store module and creates a store for session data to interact with database 
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
+
 const app = express();
 const PORT = process.env.PORT || 3001;
+const sequelize = require('./config/connection');
+const hbs = exphbs.create({ helpers });
 
+// TODO: Add a comment describing the functionality of this object
+//This configures middleware, specifying secret key, storage, and other settings
 const sess = {
-  secret: 'SuperSecretSecret', // Change to a long, randomly generated string
-  cookie: { 
-    maxAge: 3600000, // Example: set the session cookie to expire after 1 hour (adjust as needed)
-  },
+  secret: 'Super secret secret',
+  cookie: {},
   resave: false,
   saveUninitialized: true,
   store: new SequelizeStore({
-    db: sequelize,
-  }),
+    db: sequelize
+  })
 };
 
-// Sync models with database
-sequelize.sync({ force: false }) // Set force to true to drop tables on every sync
-  .then(() => {
-    console.log('Database synced successfully');
-  })
-  .catch((error) => {
-    console.error('Error syncing database:', error);
-  });
-
+// TODO: Add a comment describing the functionality of this statement
+//adds session middleware to the express application to allow storage of session data
 app.use(session(sess));
 
-const hbs = exphbs.create({ helpers });
+// app.use(session(express.static('utils')))
 
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-// Serve static files from the 'public' directory
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(routes);
-app.use('/', userRoutes);
 
-sequelize.sync({ force: true }).then(() => {
-  app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send('Something broke!');
+});
+
+sequelize.sync({ force: false }).then(() => {
+  app.listen(PORT, () => console.log('Now listening'));
 });

@@ -13,7 +13,6 @@ CREATE TABLE IF NOT EXISTS users (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-<<<<<<< HEAD
 CREATE TABLE IF NOT EXISTS workoutinfo (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
@@ -31,19 +30,3 @@ CREATE TABLE IF NOT EXISTS supplements (
     dosage VARCHAR(50) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-
--- Add more table creation statements as needed
-
--- Show the list of tables in fitness_db
-SHOW TABLES;
-=======
-CREATE TABLE user (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(100) NOT NULL,
-    email VARCHAR(100) NOT NULL UNIQUE,
-    password VARCHAR(255) NOT NULL
-);
-
-CREATE TABLE nutriFit as 
-SELECT 
->>>>>>> 4d9cd4f30f1b670c46df768bb7655a3ab4d70980

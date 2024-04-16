@@ -15,7 +15,7 @@ if (!window.signupFormHandler) {
     if (username && email && password) {
       try {
         // Send a POST request to the API endpoint
-        const response = await fetch('/api/user/signup', {
+        const response = await fetch('./signup', {
           method: 'POST',
           body: JSON.stringify({ username, email, password }),
           headers: { 'Content-Type': 'application/json' },
