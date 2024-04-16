@@ -1,46 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FitTrack</title>
+  <!-- linking the js files onto here -->
   <script src="{{{ '/js/login.js' }}}"></script>
+  <script src="{{{ '/js/profile.js' }}}"></script>
   <script src="{{{ '/js/logout.js' }}}"></script>
   <script src="{{{ '/js/signup.js' }}}"></script>
+
   <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
+
 <body>
   <header> 
     <h1>FitTrack</h1>
   </header>
   <nav>
     <a href="/">Home</a>
-    {{#if loggedIn}}
-    <button id="logout" class="btn-no-style">Logout</button>
-    {{else}}
-  <a href="../../controllers/formRoutes.js">Login</a>
-
-    {{/if}}
+    <!-- Conditionally render login or logout links -->
+    {{#if logged_in}}
+        <a href="/profile">profile</a> |
+        <button class="no-button" id="logout">Logout</button>
+        {{else}}
+        <a href="/login">Login</a>
+        {{/if}}
   </nav>
-  {{{body}}}
   <main>
-    <aside>
-      <h2>{{h2}}</h2>
-    </aside>
-
     <div class="hero">
-      <!-- Signup Form -->
-      <form id="signup-form">
-        <input type="text" id="username-signup" placeholder="Username" required>
-        <input type="email" id="email-signup" placeholder="Email" required>
-        <input type="password" id="password-signup" placeholder="Password" required>
-        <button type="submit">Sign Up</button>
-      </form>
+      {{{body}}}
     </div>
   </main>
-  <!-- Link to JavaScript file -->
-  <script src="/js/signup.js"></script>
-  <!-- Conditionally include logout.js if logged in -->
+
+  <!-- Render script for logged in users only --> 
   {{#if loggedIn}}
   <script src="{{{ '/js/logout.js' }}}"></script>
   {{/if}}

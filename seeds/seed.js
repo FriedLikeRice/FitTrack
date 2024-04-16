@@ -5,8 +5,6 @@ const userData = require('./userData.json');
 const workoutData = require('./workoutData.json');
 const supplementData = require('./supplementData.json');
 
-// create the 2 files: workoutData.json & userData.json found in seeds folder 
-
 const seedDatabase = async () => {
     await sequelize.sync({ force: true });
   

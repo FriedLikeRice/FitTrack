@@ -1,63 +1,47 @@
 const router = require('express').Router();
-const { User } = require('../models');
-const bcrypt = require('bcrypt');
-const saltRounds = 10; // can change value
+const { User } = require('../../models');
 
-// Importing withAuth middleware 
-const withAuth = require('../middleware/authMiddleware');
-
-// Signup route
+// signup route
 router.post('/signup', async (req, res) => {
-    try {
-      const hashedPassword = await bcrypt.hash(req.body.password, saltRounds);
-      
-      const userData = await User.create({
-        username: req.body.username,
-        email: req.body.email,
-        password: hashedPassword,
-      });
-  
-      req.session.save(() => {
-        req.session.loggedIn = true;
-        req.session.userId = userData.id;
-  
-        res.status(200).json(userData);
-      });
-    } catch (err) {
-      console.error('Error in user signup', err);
-      res.status(500).json(err.message || 'Internal server error');
-    }
+  try {
+    const userData = await User.create(req.body);
+
+    req.session.save(() => {
+      req.session.user_id = userData.id;
+      req.session.loggedIn = true;
+
+      res.status(200).json(userData);
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json(err.message || 'Internal server error');
+  }
 });
 
-// Login route
+// login route
 router.post('/login', async (req, res) => {
   try {
     const userData = await User.findOne({ where: { email: req.body.email } });
 
     if (!userData) {
-      return res.status(400).json({ message: 'Incorrect email or password, please try again' });
-    }
-
-    const validPassword = await bcrypt.compare(req.body.password, userData.password);
-
-    if (!validPassword) {
-      return res.status(400).json({ message: 'Incorrect email or password, please try again' });
+      res.status(400).json({ message: 'Incorrect email or password, please try again' });
+      return;
     }
 
     req.session.save(() => {
-      req.session.userId = userData.id;
+      req.session.user_id = userData.id;
       req.session.loggedIn = true;
       
       res.json({ user: userData, message: 'You are now logged in!' });
     });
 
   } catch (err) {
-    console.error('Error in bcrypt hashing:', err);
+    console.error('Error in login:', err);
     res.status(500).json(err.message || 'Internal server error');
   }
 });
 
-// Logout route
+// logout route
 router.post('/logout', (req, res) => {
   if (req.session.loggedIn) {
     req.session.destroy(() => {

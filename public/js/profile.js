@@ -1,58 +1,35 @@
 // Function to handle new workout form submission
 const newFormHandler = async (event) => {
-    event.preventDefault();
-  
-    // Collect values from the new workout form
-    const workout = document.querySelector('#workout').value.trim();
-    const description = document.querySelector('#description').value.trim();
-    const intake = document.querySelector('#intake').value.trim();
-  
-    if (workout && description) {
-      try {
-        // Send a POST request to create a new workout
-        const response = await fetch(`/api/workouts`, {
-          method: 'POST',
-          body: JSON.stringify({ workout, description, intake }),
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        });
-  
-        if (!response.ok) {
-          throw new Error('Failed to create workout');
-        }
-  
-        // Redirect to the profile page upon successful creation of workout
-        document.location.replace('/profile');
-      } catch (error) {
-        alert(error.message);
+  event.preventDefault();
+
+  const workoutName = document.querySelector('#workout-name').value.trim();
+  const reps = document.querySelector('#workout-reps').value.trim();
+  const weight = document.querySelector('#workout-weight').value.trim();
+
+  if (workoutName && reps && weight) {
+    try {
+      // Send a POST request to create a new workout
+      const response = await fetch(`/api/workouts`, {
+        method: 'POST',
+        body: JSON.stringify({ name: workoutName, reps, weight }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (response.ok) {
+        // Reload the page to display the updated list of workouts
+        window.location.reload();
+      } else {
+        alert('Failed to create workout.');
       }
+    } catch (error) {
+      alert('An error occurred while creating the workout.');
     }
-  };
-  
-  // Function to handle delete button click event
-  const delButtonHandler = async (event) => {
-    if (event.target.hasAttribute('data-id')) {
-      const id = event.target.getAttribute('data-id');
-  
-      try {
-        // Send a DELETE request to delete a workout
-        const response = await fetch(`/api/workouts/${id}`, {
-          method: 'DELETE',
-        });
-  
-        if (!response.ok) {
-          throw new Error('Failed to delete workout');
-        }
-  
-        // Redirect to the profile page upon successful deletion of workout
-        document.location.replace('/profile');
-      } catch (error) {
-        alert(error.message);
-      }
-    }
-  };
-  
-  document.querySelector('.new-workout-form').addEventListener('submit', newFormHandler);
-  document.querySelector('.workout-list').addEventListener('click', delButtonHandler);
-  
+  } else {
+    alert('Please fill in all fields.');
+  }
+};
+
+// Add event listener to the new workout form
+document.querySelector('.new-workout-form').addEventListener('submit', newFormHandler);

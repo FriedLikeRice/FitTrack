@@ -13,9 +13,9 @@ module.exports = {
         return `${hours}h ${minutes}m ${seconds}s`;
     },
 
-    // Function to format supplement intake details
-    format_supplement_intake: (supplement) => {
-        return `${supplement.name} - Serving Size: ${supplement.serving_size}`;
+    // Function to format supplement dosage details
+    format_supplement_dosage: (supplement) => {
+        return `${supplement.name} - Dosage: ${supplement.dosage}`;
     },
 
     // Function to calculate the total duration of all workouts logged by the user

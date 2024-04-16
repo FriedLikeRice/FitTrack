@@ -31,3 +31,7 @@ This project is a full-stack fitness tracking application, allowing users to mon
 ## RESOURCES:
 
 Screenshot of deployed application: ![Alt text](./public/images/project.png)
+
+## CHALLENGES:
+- allowing users to create a new workout
+- allowing users to logout with logout button and be redirected to login/homepage
