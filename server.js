@@ -17,6 +17,10 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 const hbs = exphbs.create({ helpers });
 
+const dbHost = process.env.DB_HOST;
+const dbUser = process.env.DB_USER;
+const dbPass = process.env.DB_PASS;
+
 // TODO: Add a comment describing the functionality of this object
 //This configures middleware, specifying secret key, storage, and other settings
 const sess = {
@@ -42,6 +46,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+
 // routes files
 app.use(routes);
 app.use('/api/user', userRoutes);
@@ -55,3 +61,5 @@ sequelize.sync({ force: false }).then(() => {
 sequelize.authenticate()
   .then(() => console.log('Database connected.'))
   .catch(err => console.error('Unable to connect to the database:', err));
+
+  require('dotenv').config();
