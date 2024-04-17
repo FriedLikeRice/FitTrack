@@ -15,7 +15,6 @@ const { Sequelize } = require('sequelize');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
-const sequelize = require('./config/connection');
 const hbs = exphbs.create({ helpers });
 
 // TODO: Add a comment describing the functionality of this object

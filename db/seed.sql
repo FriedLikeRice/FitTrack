@@ -1,3 +1,4 @@
+
 -- Seed supplements table
 INSERT INTO supplements (name, dosage) VALUES 
     ('Whey Protein', '1 scoop (30g)'),
@@ -22,7 +23,7 @@ INSERT INTO supplements (name, dosage) VALUES
     ('Probiotics', '1 capsule');
 
 -- Seed workoutinfo table
-INSERT INTO workoutinfo (exercise, muscle_group) VALUES 
+INSERT INTO workoutinfo(exercise, muscle_group) VALUES 
     ('Push-Up', 'Chest'),
     ('Pull-Up', 'Back'),
     ('Squat', 'Legs'),
