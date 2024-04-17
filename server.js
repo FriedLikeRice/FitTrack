@@ -15,7 +15,10 @@ const { Sequelize } = require('sequelize');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
+const hbs = exphbs.create({ helpers });
 
+// TODO: Add a comment describing the functionality of this object
+//This configures middleware, specifying secret key, storage, and other settings
 const sess = {
   secret: 'SuperSecretSecret', // Change to a long, randomly generated string
   cookie: { 
@@ -30,15 +33,13 @@ const sess = {
 };
 app.use(session(sess));
 
-const hbs = exphbs.create({ helpers });
+// app.use(session(express.static('utils')))
 
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-// Serve static files from the 'public' directory
 app.use(express.static(path.join(__dirname, 'public')));
 
 // routes files

@@ -1,8 +1,7 @@
 -- Create two new databases --
-DROP DATABASE IF EXISTS fitness_db;
-CREATE DATABASE fitness_db;
+CREATE DATABASE IF NOT EXISTS fitness_db;
 
--- Use inventory_db --
+-- Use fitness_db --
 USE fitness_db;
 
 -- See database in use --
@@ -15,5 +14,20 @@ CREATE TABLE user (
     password VARCHAR(255) NOT NULL
 );
 
--- Describe the 'user' table
-DESC user;
+CREATE TABLE workoutinfo (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    workout_name VARCHAR(100) NOT NULL,
+    workout_date DATE NOT NULL,
+    duration_minutes INT,
+    FOREIGN KEY (user_id) REFERENCES user(id)
+);
+
+CREATE TABLE supplements (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    supplement_name VARCHAR(100) NOT NULL,
+    intake_date DATE NOT NULL,
+    quantity FLOAT,
+    FOREIGN KEY (user_id) REFERENCES user(id)
+);
