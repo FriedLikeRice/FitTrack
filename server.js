@@ -4,6 +4,9 @@ const session = require('express-session');
 const exphbs = require('express-handlebars');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
+// Load environment variables from .env file
+require('dotenv').config();
+
 const routes = require('./controllers');
 const userRoutes = require('./controllers/api/userRoutes');
 const workoutRoutes = require('./controllers/api/workoutRoutes');
@@ -19,15 +22,14 @@ const hbs = exphbs.create({ helpers });
 
 const dbHost = process.env.DB_HOST;
 const dbUser = process.env.DB_USER;
-const dbPass = process.env.DB_PASS;
+const dbPass = process.env.DB_PASSWORD;
 
-// TODO: Add a comment describing the functionality of this object
 //This configures middleware, specifying secret key, storage, and other settings
 const sess = {
-  secret: 'SuperSecretSecret', // Change to a long, randomly generated string
+  secret: process.env.SESSION_SECRET || 'SuperSecretSecret', // Change to a long, randomly generated string
   cookie: { 
     httpOnly: true,
-    maxAge: 3600000, // Example: set the session cookie to expire after 1 hour (adjust as needed)
+    maxAge: process.env.SESSION_MAX_AGE || 3600000, 
   },
   resave: false,
   saveUninitialized: true,
@@ -61,5 +63,3 @@ sequelize.sync({ force: false }).then(() => {
 sequelize.authenticate()
   .then(() => console.log('Database connected.'))
   .catch(err => console.error('Unable to connect to the database:', err));
-
-  require('dotenv').config();
