@@ -30,4 +30,6 @@ const loginFormHandler = async (event) => {
   }
 };
 
-document.querySelector('.login-form').addEventListener('submit', loginFormHandler);
+// event listener for login form
+// fixed .login-form to #login-form since its an ID in the HTML
+document.querySelector('#login-form').addEventListener('submit', loginFormHandler);

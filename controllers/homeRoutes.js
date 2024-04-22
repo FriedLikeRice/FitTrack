@@ -1,6 +1,8 @@
 const router = require('express').Router();
-const { Workout, Supplement, User } = require('../models');
-// using auth.js instead of authMiddleware.js
+// const { Workout, Supplement, User } = require('../models');
+const { Workout, User } = require('../models');
+
+// using auth.js instead of authMiddleware.js for authentication 
 const withAuth = require('../utils/auth');
 
 // Route for the homepage
@@ -8,12 +10,12 @@ router.get('/', async (req, res) => {
   try {
     // Retrieve workout and supplement data
     const workouts = await Workout.findAll();
-    const supplements = await Supplement.findAll();
+    // const supplements = await Supplement.findAll();
 
     // Render the homepage template with data
     res.render('homepage', { 
       workouts, 
-      supplements,
+      //supplements,
       logged_in: req.session.loggedin 
     });
   } catch (err) {
@@ -21,7 +23,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-// Route for viewing individual workout or supplement 
+// Route for viewing individual workout  
 router.get('/workout/:id', async (req, res) => {
   try {
     const workout = await Workout.findByPk(req.params.id);
@@ -43,7 +45,7 @@ router.get('/profile', withAuth, async (req, res) => {
       attributes: { exclude: ['password'] },
       include: [
         { model: Workout },
-        { model: Supplement },
+        //{ model: Supplement },
       ],
     });
     if (!userData) {

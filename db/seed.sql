@@ -1,26 +1,26 @@
 
 -- Seed supplements table
-INSERT INTO supplements (name, dosage) VALUES 
-    ('Whey Protein', '1 scoop (30g)'),
-    ('Creatine Monohydrate', '5g'),
-    ('BCAAs (Branched-Chain Amino Acids)', '1 scoop (10g)'),
-    ('Pre-Workout', '1 scoop (15g)'),
-    ('Glutamine', '5g'),
-    ('Casein Protein', '1 scoop (30g)'),
-    ('Fish Oil', '1 capsule (1000mg)'),
-    ('Multivitamin', '1 tablet'),
-    ('Beta-Alanine', '2g'),
-    ('Caffeine', '200mg'),
-    ('L-Glutamine', '5g'),
-    ('Vitamin D3', '5000 IU'),
-    ('ZMA (Zinc Magnesium Aspartate)', '3 capsules'),
-    ('HMB (Hydroxy Methylbutyrate)', '3g'),
-    ('L-Carnitine', '500mg'),
-    ('Omega-3 Fatty Acids', '1 capsule (1000mg)'),
-    ('Nitric Oxide Boosters', '1 scoop (10g)'),
-    ('Taurine', '1 scoop (5g)'),
-    ('Vitamin C', '1000mg'),
-    ('Probiotics', '1 capsule');
+-- INSERT INTO supplements (name, dosage) VALUES 
+--    ('Whey Protein', '1 scoop (30g)'),
+--    ('Creatine Monohydrate', '5g'),
+--    ('BCAAs (Branched-Chain Amino Acids)', '1 scoop (10g)'),
+--     ('Pre-Workout', '1 scoop (15g)'),
+--     ('Glutamine', '5g'),
+--     ('Casein Protein', '1 scoop (30g)'),
+--     ('Fish Oil', '1 capsule (1000mg)'),
+--     ('Multivitamin', '1 tablet'),
+--     ('Beta-Alanine', '2g'),
+--     ('Caffeine', '200mg'),
+--     ('L-Glutamine', '5g'),
+--     ('Vitamin D3', '5000 IU'),
+--     ('ZMA (Zinc Magnesium Aspartate)', '3 capsules'),
+--     ('HMB (Hydroxy Methylbutyrate)', '3g'),
+--     ('L-Carnitine', '500mg'),
+--     ('Omega-3 Fatty Acids', '1 capsule (1000mg)'),
+--     ('Nitric Oxide Boosters', '1 scoop (10g)'),
+--     ('Taurine', '1 scoop (5g)'),
+--     ('Vitamin C', '1000mg'),
+--     ('Probiotics', '1 capsule');
 
 -- Seed workoutinfo table
 INSERT INTO workoutinfo(exercise, muscle_group) VALUES 
@@ -114,6 +114,6 @@ INSERT INTO users (username, email, password) VALUES
 ('root', 'root@email.com', 'root');
 
 SHOW TABLES;
-SELECT * FROM supplements;
+-- SELECT * FROM supplements;
 SELECT * FROM workoutinfo;
 SELECT * FROM users;

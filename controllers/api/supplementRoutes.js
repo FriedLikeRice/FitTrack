@@ -1,3 +1,4 @@
+/*  commenting out code i will not be using to deploy this project 
 const router = require('express').Router();
 const { Supplement } = require('../../models');
 const withAuth = require('../../utils/auth');
@@ -38,3 +39,4 @@ router.delete('/supplements/:id', withAuth, async (req, res) => {
 });
 
 module.exports = router;
+*/
