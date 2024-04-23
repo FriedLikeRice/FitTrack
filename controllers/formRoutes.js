@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const { User, Workout, Supplement } = require('../models');
+// const { User, Workout, Supplement } = require('../models');
+const { User, Workout } = require('../models');
 
 // Middleware to ensure user is authenticated
 function ensureAuthenticated(req, res, next) {
@@ -10,11 +11,12 @@ function ensureAuthenticated(req, res, next) {
     next();
 }
 
-router.use(ensureAuthenticated); 
+router.use(ensureAuthenticated);
 
 router.post('/submit', async (req, res) => {
-    const { workout, reps, weight, supplement, description, intake } = req.body;
-    const userId = req.session.user_id; // Assuming this is set at login
+    // const { workout, reps, weight, supplement, description, intake } = req.body;
+    const { workout, reps, weight } = req.body;
+    const userId = req.session.user_id;
 
     if (!workout || reps === undefined || !weight) {
         return res.status(400).json({ message: 'Missing required workout fields' });
@@ -30,8 +32,9 @@ router.post('/submit', async (req, res) => {
         });
 
         // checks for supplement data 
+        /*
         let newSupplement = null;
-        if (supplement && description && intake) {
+         if (supplement && description && intake) {
             newSupplement = await Supplement.create({
                 supplement,
                 description,
@@ -39,12 +42,13 @@ router.post('/submit', async (req, res) => {
                 user_id: userId,
             });
         }
+        */
 
         // Response
         res.status(200).json({
-            message: 'Workout and supplement data submitted successfully',
+            message: 'Workout data submitted successfully', // removed supplement from line
             workout: newWorkout,
-            supplement: newSupplement,
+            // supplement: newSupplement,
         });
     } catch (error) {
         console.error('Error saving to database:', error);

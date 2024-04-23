@@ -29,4 +29,6 @@ const signupFormHandler = async (event) => {
   }
 };
 
-document.querySelector('.signup-form').addEventListener('submit', signupFormHandler);
+// Event listener for signup form
+// changed .signup-form to #signup-form 
+document.querySelector('#signup-form').addEventListener('submit', signupFormHandler);

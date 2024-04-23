@@ -24,7 +24,9 @@ const dbHost = process.env.DB_HOST;
 const dbUser = process.env.DB_USER;
 const dbPass = process.env.DB_PASSWORD;
 
-//This configures middleware, specifying secret key, storage, and other settings
+
+// configures middleware, specifying secret key, storage, and other settings
+
 const sess = {
   secret: process.env.SESSION_SECRET || 'SuperSecretSecret', // Change to a long, randomly generated string
   cookie: { 
@@ -39,27 +41,26 @@ const sess = {
 };
 app.use(session(sess));
 
-// app.use(session(express.static('utils')))
-
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+// serve static files from the 'public' folder
 app.use(express.static(path.join(__dirname, 'public')));
 
-
-
-// routes files
+// define routes 
 app.use(routes);
 app.use('/api/user', userRoutes);
 app.use('/api/workouts', workoutRoutes);
 app.use('/api/supplements', supplementRoutes);
 
+// sync models with the database and start server
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
 });
 
+// tests database connection
 sequelize.authenticate()
   .then(() => console.log('Database connected.'))
   .catch(err => console.error('Unable to connect to the database:', err));

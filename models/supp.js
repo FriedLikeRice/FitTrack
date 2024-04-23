@@ -1,3 +1,4 @@
+/*
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
@@ -37,3 +38,4 @@ Supplement.init(
 );
 
 module.exports = Supplement;
+*/

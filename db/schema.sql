@@ -23,11 +23,12 @@ CREATE TABLE workoutinfo (
     FOREIGN KEY (user_id) REFERENCES user(id)
 );
 
-CREATE TABLE supplements (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT NOT NULL,
-    supplement_name VARCHAR(100) NOT NULL,
-    intake_date DATE NOT NULL,
-    quantity FLOAT,
-    FOREIGN KEY (user_id) REFERENCES user(id)
-);
+-- commenting this section out for now
+-- CREATE TABLE supplements (
+--    id INT AUTO_INCREMENT PRIMARY KEY,
+--    user_id INT NOT NULL,
+--    supplement_name VARCHAR(100) NOT NULL,
+--    intake_date DATE NOT NULL,
+--    quantity FLOAT,
+--    FOREIGN KEY (user_id) REFERENCES user(id)
+-- );
