@@ -24,7 +24,9 @@ const dbHost = process.env.DB_HOST;
 const dbUser = process.env.DB_USER;
 const dbPass = process.env.DB_PASSWORD;
 
+
 // configures middleware, specifying secret key, storage, and other settings
+
 const sess = {
   secret: process.env.SESSION_SECRET || 'SuperSecretSecret', // Change to a long, randomly generated string
   cookie: { 
